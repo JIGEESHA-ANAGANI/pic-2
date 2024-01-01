@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            font-family: 'Pacifico', cursive;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #333;
+            transition: background 1s ease;
+        }
+
+        #balloon {
+            font-size: 24px;
+            cursor: pointer;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        #birthdayWish {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #ff7e5f, #feb47b, #ffcc94, #ffedc1);
+            padding: 20px;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            max-width: 300px;
+            width: 100%;
+            color: #fff;
+            opacity: 0;
+            transform-origin: top right;
+            transform: scaleY(0);
+            transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+            z-index: 0;
+        }
+
+        #birthdayWish.show {
+            opacity: 1;
+            transform: scaleY(1);
+        }
+
+        #birthdayWish h1 {
+            color: #ff6363;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        #birthdayWish p {
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        #videoContainer {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+            z-index: 1;
+        }
+
+        #additionalText {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #hsla(0, 10%, 8%, 0.256);
+            font-size: 24px;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: #fff;
+            border-radius: 50%;
+            opacity: 0;
+            animation: glitter 1s linear infinite;
+        }
+
+        @keyframes glitter {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 0.5;
+            }
+        }
+    </style>
+    <script>
+        function generateBirthdayWish() {
+            var balloon = document.getElementById('balloon');
+            var birthdayWish = document.getElementById('birthdayWish');
+            var videoContainer = document.getElementById('videoContainer');
+            var additionalText = document.getElementById('additionalText');
+
+            // Hide the balloon button
+            balloon.style.opacity = 0;
+
+            // Show the birthday wish with transition effect
+            birthdayWish.classList.add('show');
+
+            // Create sparkling effect within the birthday wish element
+            for (var i = 0; i < 10; i++) {
+                createSparkle(birthdayWish);
+            }
+
+            // Change background to the given picture
+            document.body.style.background = 'url("https://miro.medium.com/v2/resize:fit:1024/1*6osHes5zHrRqlG9UZdEiHg@2x.jpeg") center center / cover no-repeat';
+
+            // Display the video after a delay
+            setTimeout(function () {
+                videoContainer.style.display = 'block';
+                videoContainer.innerHTML = '<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/sDHw74TA-Qs?autoplay=1" frameborder="0" allowfullscreen></iframe>';
+
+                // Hide the video container after the video finishes playing
+                setTimeout(function () {
+                    videoContainer.style.display = 'none';
+
+                    // Set background to the new image
+                    document.body.style.background = 'url("https://raw.githubusercontent.com/JIGEESHA-ANAGANI/picture/d1846dbe96f7b59867a5887c77daf3c7ffc7814b/WhatsApp%20Image%202023-12-30%20at%202.06.36%20PM.jpeg") center center / cover no-repeat';
+
+                    // Show the additional text
+                    additionalText.style.opacity = 1;
+                }, 26000); // Adjust the delay as needed
+            }, 5000); // Adjust the delay as needed
+
+            // Hide the text box after the video and additional text appear
+            setTimeout(function () {
+                birthdayWish.style.opacity = 0;
+            }, 13000); // Adjust the delay as needed
+        }
+
+        function createSparkle(parentElement) {
+            var sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = Math.random() * parentElement.offsetWidth + 'px';
+            sparkle.style.top = Math.random() * parentElement.offsetHeight + 'px';
+            parentElement.appendChild(sparkle);
+        }
+    </script>
+</head>
+
+<body>
+    <div id="balloon" onclick="generateBirthdayWish()">Areyyy Yedava Akkada Emi Chusthunav<br>Click on the Balloon 🎈</div>
+
+    <div id="birthdayWish">
+        <h1>Happy Birthday, Nandu </h1>
+        <p>This day is more special for me because it is yours. Have the finest 20 raa</p>
+        <p>cherish every feel of yours raa </p>
+        <p>I love you for all that you are, all that you have been and all that you will be .<br> i belive in you nanna</p>
+    </div>
+
+    <div id="videoContainer"></div>
+
+    <div id="additionalText">
+        <h1>Happiest birthday my all in one package</h1>
+    </div>
+</body>
+
+</html>
